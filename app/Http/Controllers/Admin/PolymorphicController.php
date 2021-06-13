@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResource;
 use App\Mail\PostMail;
 use Illuminate\Http\Request;
 use App\Jobs\NewPostJob;
@@ -63,5 +64,12 @@ class PolymorphicController extends Controller
     {
         Video::create($request->all());
         return redirect()->route('admin.poly.index');
+    }
+
+    public function TestApi($id)
+    {
+        $post = Post::with('comments')->find($id);
+        return new PostResource($post);
+        //return response()->json($post);
     }
 }
