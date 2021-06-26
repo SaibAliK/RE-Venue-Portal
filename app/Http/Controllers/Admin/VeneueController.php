@@ -14,6 +14,8 @@ class VeneueController extends Controller
 {
     public function veneues()
     {
+        $veneues = Veneue::where('name','first')->where('id',26)->with('event_types')->get();
+        dd($veneues);
         /*$veneues = Veneue::with('event_types')->where('name','first')->where(function($q){
             $q->where('people_maximum',4)->orWhere('people_minimum',23);
         })->get();*/
